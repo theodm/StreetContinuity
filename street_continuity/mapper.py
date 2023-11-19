@@ -38,7 +38,7 @@ def __merge_criteria__(primal_graph: PrimalGraph, neighbors: list, source: int, 
                   for neighbor in neighbors]
 
     # returns the neighbor that forms the highest convex angle or False whenever it does not exist
-    return neighbors[np.argmax(candidates)] if np.max(candidates) >= min_angle else False
+    return neighbors[np.argmax(candidates)] #if np.max(candidates) >= min_angle else False
 
 
 def __explore_neighborhood__(primal_graph: PrimalGraph, dual_node: DualGraph.Node, is_upstream=True):

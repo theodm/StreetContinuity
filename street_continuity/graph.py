@@ -21,7 +21,7 @@ class PrimalGraph:
         Such information comes straight from the input file, and we assume that they are all correct and verified.
         """
 
-        def __init__(self, eid: int, source: str, target: str, length: float, name: str, label: str):
+        def __init__(self, eid: int, source: str, target: str, length: float, name: str, label: str, raw_name: str, raw_ref: str):
             self.mapped = False   # [boolean] whether the edge was mapped or not;
             self.source = source  # [string] index of the source node;
             self.target = target  # [string] index of the target node;
@@ -29,6 +29,8 @@ class PrimalGraph:
             self.label = label    # [string] street label or class (default: "unclassified");
             self.name = name      # [string] street name (default: "unknown"); and,
             self.eid = eid        # [integer] street index.
+            self.raw_name = raw_name
+            self.raw_ref = raw_ref
 
     # --- nested class --- #
 

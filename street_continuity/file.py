@@ -104,14 +104,18 @@ def from_osmnx(oxg: nx.MultiDiGraph, use_label: bool):
     eid = 0
     edge_dictionary = {}
     for source, target, data in oxg.edges(data=True):
-        name = data.get('name', 'unknown')  # unknown is the default value for streets' name
+        name = data.get('name', data.get("ref"))
+
+        name_raw = data.get("name")
+        ref_raw = data.get("raw")
+
         label = data.get('highway', 'unclassified')  # unclassified is the default value for streets' type
         length = compute_distance(node_dictionary[source],
                                   node_dictionary[target])  # straight-line distance between source and target nodes
 
         # creating a new PrimalEdge with information from the current edge
         edge = primal_graph.Edge(eid, source, target, float(length), 'unknown' if type(name) == list else name,
-                                 'unclassified' if type(label) == list else label if use_label else 'unclassified')
+                                 'unclassified' if type(label) == list else label if use_label else 'unclassified', name_raw, ref_raw)
 
         # storing the new edge in the edge dictionary
         edge_dictionary[eid] = edge
